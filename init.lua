@@ -31,8 +31,16 @@ require("lazy").setup({
 	require("plugins.autoformat"),
 	require("plugins.rest"),
 	require("plugins.dap"),
+	{
+		"iamcco/markdown-preview.nvim",
+		cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+		build = "cd app && npm install",
+		init = function()
+			vim.g.mkdp_filetypes = { "markdown" }
+		end,
+		ft = { "markdown" },
+	},
 	require("plugins.markdown"),
-	require("plugins.markdown-preview"),
 }, {
 	ui = {
 		-- If you are using a Nerd Font: set icons to an empty table which will use the
