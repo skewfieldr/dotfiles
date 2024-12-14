@@ -53,9 +53,19 @@ This repo is for learning to build neovim dotfiles from scratch.
     - ```g10g```: go to the 10th line
     - ```g10j```: move 10 line down
     - ```g10k```: move 10 line up
-- ``Ctrl + u```: scroll up
-- ``Ctrl + d```: scroll down
+- ```Ctrl + u```: scroll up
+- ```Ctrl + d```: scroll down
 - ```Space```: Leader key
+
+#### Commenting
+Base keymap: ```gc```
+- ```gcc```: Comment current line
+- ```gc1j```: Comment current line and 1 line below
+- ```gc1k```: Comment current line and 1 line above
+
+Works in ```Visual``` mode
+- Press ```v``` to go to ``Visual```` mode, block the text, press ```gc```
+
 
 ### Keymaps for exploring files and directories
 - ```Space + e```: toggle nvim-tree / directory

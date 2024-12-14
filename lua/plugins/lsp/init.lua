@@ -118,7 +118,9 @@ return {
 			"gopls",
 			"ts_ls",
 			"volar",
-			"volar",
+			"emmet_ls",
+			"html",
+			"cssls",
 		})
 		-- require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 		require("mason-lspconfig").setup({ ensure_installed = ensure_installed })
