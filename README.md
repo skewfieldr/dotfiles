@@ -64,7 +64,7 @@ Base keymap: ```gc```
 - ```gc1k```: Comment current line and 1 line above
 
 Works in ```Visual``` mode
-- Press ```v``` to go to ``Visual```` mode, block the text, press ```gc```
+- Press ```v``` to go to ```Visual``` mode, block the text, press ```gc```
 
 
 ### Keymaps for exploring files and directories

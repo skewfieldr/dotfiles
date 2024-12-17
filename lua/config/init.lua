@@ -18,11 +18,28 @@ vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagn
 vim.api.nvim_set_keymap("n", "<leader>e", ":NvimTreeToggle<CR>", { noremap = true, silent = true })
 
 -- auto command
+--
+-- vim.api.nvim_create_autocmd({ "BufReadPost", "BufNewFile" }, {
+-- 	pattern = "*.cs",
+-- 	callback = function()
+-- 		vim.bo.filetype = "c_sharp"
+-- 	end,
+-- })
+
 vim.api.nvim_create_autocmd({ "FileType" }, {
-	pattern = { "json", "go", "lua" },
+	pattern = { 'json', 'lua', 'cs', 'c_sharp', 'js', 'ts', 'markdown' }, -- You can add more filetypes here later
 	callback = function()
-		vim.opt_local.foldmethod = "syntax"
-		vim.opt.foldenable = true
+		-- vim.opt_local.foldmethod = 'syntax'
+		vim.opt.foldenable = false
+		-- vim.opt.foldlevelstart = 99
+		local huft = require("nvim-treesitter.parsers")
+		local has_parser = huft.has_parser(vim.bo.filetype)
+		if require("nvim-treesitter.parsers").has_parser(vim.bo.filetype) then
+			vim.opt.foldmethod = "expr"
+			vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+		else
+			vim.opt.foldmethod = "syntax"
+		end
 	end,
 })
 
@@ -31,5 +48,12 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
 	callback = function()
 		vim.highlight.on_yank()
+	end,
+})
+
+vim.api.nvim_create_autocmd('BufWritePre', {
+	pattern = { '*.json', '*.jsonc', '*.js', '*.ts', '*.cs', '*.lua', '*.md' },
+	callback = function()
+		vim.lsp.buf.format { async = false }
 	end,
 })

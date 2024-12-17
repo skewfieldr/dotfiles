@@ -20,6 +20,23 @@ return {
 			},
 		}
 
+		dap.adapters.coreclr = {
+			type = 'executable',
+			command = vim.fn.stdpath("data") .. "/mason/packages/netcoredbg/netcoredbg/netcoredbg.exe",
+			args = { '--interpreter=vscode' }
+		}
+
+		dap.configurations.cs = {
+			{
+				type = "coreclr",
+				name = "launch - netcoredbg",
+				request = "launch",
+				program = function()
+					return vim.fn.input('Path to dll >>> ', vim.fn.getcwd() .. '/bin/Debug/net8.0/', 'file')
+				end,
+			},
+		}
+
 		require("dapui").setup()
 		require("dap-go").setup({
 			dap_configurations = {
