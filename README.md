@@ -11,14 +11,24 @@ This repo is for learning to build neovim dotfiles from scratch.
 - ```:wq!```: save and force close file
 - ```:wqa!```: save and force close all files
 - ```:e```: edit file or create new file that does not exist
+    - ```:e somefile.py```: edit ```somefile.py``` file if exists, else will create the file
 
 ### Basic keymaps to get started...
 #### Basic mode
 - ```Esc```: to go to Normal mode
     - Press this button when you are not sure...
+        - Also ```u``` for Undo and ```Ctrl + r``` for Redo
 - ```a```: go to insert mode, cursor go in front of the current char
 - ```i```: go to insert mode, cursor go in the back of the current char
-- ```v```: go to Visual mode, for blocking text
+- ```A```: go to insert mode, cursor go in the end of the line
+- ```I```: go to insert mode, cursor go in the start of the line
+- ```o```: go to insert mode + insert a new line below
+- ```O```: go to insert mode + insert a new line above
+
+#### Visual mode
+- ```v```: go to ```Visual``` mode, for blocking text
+- ```Shift + v```: go to ```Visual``` mode, blocking all text in line
+- ```Ctrl + v```: go to ```Visual``` mode, blocking text without having to block the whole line
 
 #### Basic movement
 - ```w```: move cursor by 1 word
@@ -28,9 +38,10 @@ This repo is for learning to build neovim dotfiles from scratch.
 
 #### Basic text manipulation
 - ```s```: delete current character and go to INSERT mode
-- ```c```: change, example below
+- ```c```: change, example below (wait for one second to see list of possible commands)
     - ```cw``` -> change 1 word
     - ```c2w``` -> change 2 word
+    - ```c9k``` -> delete 9 rows above and go to ```Insert``` mode
     - ```ciw``` -> change inside word
     - ```ci(``` -> change all inside ```()```
 - ```d```: delete, example below
@@ -64,7 +75,7 @@ Base keymap: ```gc```
 - ```gc1k```: Comment current line and 1 line above
 
 Works in ```Visual``` mode
-- Press ```v``` to go to ``Visual```` mode, block the text, press ```gc```
+- Press ```v``` to go to ```Visual``` mode, block the text, press ```gc```
 
 
 ### Keymaps for exploring files and directories
@@ -82,3 +93,13 @@ Works in ```Visual``` mode
 - ```Ctrl + p```: move up in drop down (p = previous)
 - ```Ctrl + y```: select item (like ```Enter```)
 
+### Customized Keymaps
+
+#### Terminal
+
+- ```Space + t + t```: open floating terminal (in ```Normal``` and ```Terminal``` mode)
+- ```Esc```: go to ```Terminal``` mode
+
+### Change colorscheme
+
+- ```:colorscheme <schemename>```

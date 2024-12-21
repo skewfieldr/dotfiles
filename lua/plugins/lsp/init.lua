@@ -146,7 +146,8 @@ return {
 						},
 					}
 					-- return
-					-- server.filetypes = { 'vue', 'json', 'typescript', 'typescriptreact', 'javascript', 'javascriptreact' }
+					server.filetypes =
+						{ "vue", "json", "typescript", "typescriptreact", "javascript", "javascriptreact" }
 				end
 				-- if require('neoconf').get(server_name .. '.disable') then
 				--   return
