@@ -95,22 +95,19 @@ return {
 					},
 				},
 			},
-			csharp_ls = {
+			-- csharp_ls = {
+			-- 	-- cmd = {...},
+			-- 	-- filetypes = { "cs", "c_sharp" },
+			-- 	filetypes = {},
+			-- 	-- capabilities = {},
+			-- 	settings = {},
+			-- },
+			omnisharp = {
 				-- cmd = {...},
 				filetypes = { "cs", "c_sharp" },
+				-- filetypes = {},
 				-- capabilities = {},
-				settings = {
-					Lua = {
-						completion = {
-							callSnippet = "Replace",
-						},
-						-- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
-						-- diagnostics = { disable = { 'missing-fields' } },
-						diagnostics = {
-							globals = { "vim" },
-						},
-					},
-				},
+				settings = {},
 			},
 		}
 
@@ -132,7 +129,7 @@ return {
 			"emmet_ls",
 			"html",
 			"cssls",
-			"csharp_ls",
+			-- "csharp_ls",
 		})
 		-- require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 		require("mason-lspconfig").setup({ ensure_installed = ensure_installed })
@@ -141,6 +138,10 @@ return {
 		require("mason-lspconfig").setup_handlers({
 			function(server_name)
 				local server = servers[server_name] or {}
+
+				if server_name == "csharp_ls" then
+					return
+				end
 
 				if server_name == "tsserver" or server_name == "ts_ls" then
 					local mason_registry = require("mason-registry")
@@ -160,6 +161,7 @@ return {
 					-- return
 					server.filetypes = { 'vue', 'json', 'typescript', 'typescriptreact', 'javascript', 'javascriptreact' }
 				end
+
 				-- if require('neoconf').get(server_name .. '.disable') then
 				--   return
 				-- end
