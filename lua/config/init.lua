@@ -8,6 +8,7 @@ vim.opt.scrolloff = 10
 vim.o.tabstop = 2
 -- vim.o.softtabstop=4
 vim.o.shiftwidth = 2
+vim.o.expandtab = true
 
 -- keymap
 -- for specific configuration of certain file types, check <filetype>.lua file in /after/ftplugin/ directory.

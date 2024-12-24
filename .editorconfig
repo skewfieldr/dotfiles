@@ -1,0 +1,4 @@
+[*.{js,ts,vue,json,py}]
+indent_style = space
+indent_size = 2
+
