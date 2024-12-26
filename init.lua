@@ -18,6 +18,7 @@ vim.opt.rtp:prepend(lazypath)
 -- NOTE: Here is where you install your plugins.
 require("lazy").setup({
   { "echasnovski/mini.nvim", version = false },
+  require("plugins.scroll"),
   require("plugins.comment"),
   require("plugins.todocomments"),
   require("plugins.web-devicons"),
@@ -36,7 +37,6 @@ require("lazy").setup({
   require("plugins.firenvim"),
   require("plugins.dap"),
   require("plugins.trouble"),
-  require("plugins.scroll"),
   { 'tpope/vim-dadbod',      lazy = true },
   require("plugins.database"),
   {
