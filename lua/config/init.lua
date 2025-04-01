@@ -8,6 +8,9 @@ vim.opt.scrolloff = 10
 vim.o.tabstop = 2
 -- vim.o.softtabstop=4
 vim.o.shiftwidth = 2
+-- vim.opt.foldmethod = "indent"
+-- vim.opt_local.foldmethod = "indent"
+-- vim.opt.foldenable = true
 
 -- keymap
 -- for specific configuration of certain file types, check <filetype>.lua file in /after/ftplugin/ directory.
@@ -19,9 +22,17 @@ vim.api.nvim_set_keymap("n", "<leader>e", ":NvimTreeToggle<CR>", { noremap = tru
 
 -- auto command
 vim.api.nvim_create_autocmd({ "FileType" }, {
-	pattern = { "json", "go", "lua" },
+	pattern = { "json", "go", "lua", "ts" },
 	callback = function()
 		vim.opt_local.foldmethod = "syntax"
+		vim.opt.foldenable = true
+	end,
+})
+
+vim.api.nvim_create_autocmd({ "FileType" }, {
+	pattern = { "js", "ts", "typescript", "deno" },
+	callback = function()
+		vim.opt_local.foldmethod = "indent"
 		vim.opt.foldenable = true
 	end,
 })
@@ -34,4 +45,13 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	end,
 })
 
+vim.api.nvim_create_autocmd("User", {
+	pattern = "TelescopePreviewerLoaded",
+	callback = function()
+		vim.opt_local.foldmethod = "indent"
+		vim.opt_local.foldenable = true
+	end,
+})
+
+-- require("config.appearance")
 require("config.terminal")

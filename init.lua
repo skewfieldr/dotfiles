@@ -18,6 +18,8 @@ vim.opt.rtp:prepend(lazypath)
 -- NOTE: Here is where you install your plugins.
 require("lazy").setup({
 	"echasnovski/mini.nvim",
+	require("plugins.comment"),
+	require("plugins.scroll"),
 	require("plugins.todocomments"),
 	require("plugins.web-devicons"),
 	require("plugins.telescope"),
@@ -31,6 +33,9 @@ require("lazy").setup({
 	require("plugins.autoformat"),
 	require("plugins.rest"),
 	require("plugins.dap"),
+	require("plugins.git"),
+	require("plugins.db"),
+	require("plugins.screenshot"),
 	require("plugins.markdown"),
 	{
 		"iamcco/markdown-preview.nvim",
@@ -64,3 +69,4 @@ require("lazy").setup({
 })
 
 -- vim: ts=2 sts=2 sw=2 et
+--

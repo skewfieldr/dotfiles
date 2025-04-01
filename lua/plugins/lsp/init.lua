@@ -101,6 +101,9 @@ return {
 					},
 				},
 			},
+			-- ts_ls = {
+			-- 	filetypes = {},
+			-- },
 		}
 
 		-- Ensure the servers and tools above are installed
@@ -116,11 +119,12 @@ return {
 		local ensure_installed = vim.tbl_keys(servers or {})
 		vim.list_extend(ensure_installed, {
 			"gopls",
-			"ts_ls",
+			-- "ts_ls",
 			"volar",
 			"emmet_ls",
 			"html",
 			"cssls",
+			"sqlls",
 		})
 		-- require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 		require("mason-lspconfig").setup({ ensure_installed = ensure_installed })
@@ -146,12 +150,17 @@ return {
 						},
 					}
 					-- return
-					server.filetypes =
-						{ "vue", "json", "typescript", "typescriptreact", "javascript", "javascriptreact" }
+					-- server.filetypes = {}
+					server.filetypes = { "typescriptreact", "javascriptreact" }
 				end
 				-- if require('neoconf').get(server_name .. '.disable') then
 				--   return
 				-- end
+
+				if server_name == "denols" then
+					server.filetypes = { "vue", "json", "typescript", "javascript" }
+					-- return
+				end
 
 				server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
 				lspconfig[server_name].setup(server)
