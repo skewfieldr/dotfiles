@@ -36,6 +36,7 @@ require("lazy").setup({
 	require("plugins.git"),
 	require("plugins.db"),
 	require("plugins.screenshot"),
+	require("plugins.oil"),
 	require("plugins.markdown"),
 	{
 		"iamcco/markdown-preview.nvim",
