@@ -1,6 +1,6 @@
 # Dotfiles by skewfieldr
 
-This repo is for learning to build neovim dotfiles from scratch.
+This repo is for learning to maintain dotfiles and learn to build neovim from scratch.
 
 ## Cheat sheet
 
