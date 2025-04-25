@@ -1,6 +1,0 @@
--- vim.api.nvim_set_keymap("n", "<leader>rp", ":MarkdownPreview<CR>", { noremap = true, silent = true })
--- vim.api.nvim_set_keymap("n", "<leader>rz", ":MarkdownStop<CR>", { noremap = true, silent = true })
--- vim.api.nvim_set_keymap("n", "<leader>rt", ":MarkdownToggle<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "<leader>mp", ":MarkdownPreview<CR>", { desc = "[M]arkdown [P]review", silent = true })
-vim.keymap.set("n", "<leader>ms", ":MarkdownPreviewStop<CR>", { desc = "[M]arkdown Preview [S]top" })
-vim.keymap.set("n", "<leader>mt", ":MarkdownPreviewToggle<CR>", { desc = "[M]arkdown Preview [T]oggle", silent = true })
