@@ -1,9 +1,9 @@
-print("hello, fuckers")
-
 require("config")
+require("tests.pg")
 
 -- NOTE: Lazy Setup
 
+-- require("lazy")
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
   local lazyrepo = "https://github.com/folke/lazy.nvim.git"
@@ -28,14 +28,21 @@ require("lazy").setup({
   require("plugins.which-key"),
   require("plugins.treesitter"),
   'hrsh7th/cmp-nvim-lsp',
+  -- 'hrsh7th/cmp-nvim-lua',
   'hrsh7th/cmp-path',
   require("plugins.lsp"),
+  -- require("plugins.lsp.cmp-lua"),
   require("plugins.lsp.autocompletion"),
+  -- require("plugins.lsp.linter"),
+  -- require("plugins.lsp.sonarlint"),
+  require("plugins.lsp.sonarlint"),
   require("plugins.tokyonight"),
   require("plugins.autoformat"),
   -- require("plugins.rest"),
+  require("plugins.vrc"),
   require("plugins.firenvim"),
   require("plugins.dap"),
+  require("plugins.git"),
   require("plugins.trouble"),
   { 'tpope/vim-dadbod',      lazy = true },
   require("plugins.database"),
@@ -49,6 +56,7 @@ require("lazy").setup({
     ft = { "markdown" },
   },
   require("plugins.markdown"),
+  require("plugins.oil"),
 }, {
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the
@@ -71,4 +79,34 @@ require("lazy").setup({
   },
 })
 
+-- local sonarlint = require('plugins.lsp.sonarlint')
+-- -- print(sonarlint)
+-- sonarlint.setup({
+--
+--   server = {
+--     cmd = {
+--       'sonarlint-language-server',
+--       -- Ensure that sonarlint-language-server uses stdio channel
+--       '-stdio',
+--       '-analyzers',
+--       vim.fn.expand('$MASON/share/sonarlint-analyzers/sonarcsharp.jar'),
+--       vim.fn.expand('$MASON/share/sonarlint-analyzers/csharpenterprise.jar'),
+--     },
+--     init_options = {
+--       omnisharpDirectory = vim.fn.expand('$MASON/packages/sonarlint-language-server/extension/omnisharp'),
+--       csharpOssPath = vim.fn.expand('$MASON/share/sonarlint-analyzers/sonarcsharp.jar'),
+--       csharpEnterprisePath = vim.fn.expand('$MASON/share/sonarlint-analyzers/csharpenterprise.jar'),
+--     },
+--   },
+--   filetypes = {
+--     -- 'cs'
+--   }
+-- })
+
+
+-- vim.cmd("hi ColorColumn guibg=red")
+vim.cmd.hi("ColorColumn guibg=#424441")
+vim.o.shiftwidth = 2
+-- vim.cmd("hi ColorColumn ctermbg=red")
+-- vim.cmd.hi("ColorColumn ctermbg=red")
 -- vim: ts=2 sts=2 sw=2 et
