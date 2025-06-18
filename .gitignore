@@ -5,8 +5,8 @@
 !/i3/
 !/i3/**
 !/nvim/
-!/nvim-bak/
-!/nvim-bak/**
+/nvim-bak/
+# !/nvim-bak/**
 # !/nvim/lua/
 
 # lazy-lock.json
