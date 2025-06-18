@@ -13,22 +13,35 @@ set $mod Mod1
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:monospace 8
+# font pango:monospace 10
+font pango:GeistMono Nerd Font 10
+# font pango:JetBrains Mono 10
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-#font pango:DejaVu Sans Mono 8
+# font pango:DejaVu Sans Mono 10
 
 # Start XDG autostart .desktop files using dex. See also
 # https://wiki.archlinux.org/index.php/XDG_Autostart
+exec --no-startup-id feh --bg-scale ~/Downloads/unknown-pleasures.jpg ~/Downloads/unknown-pleasures.jpg
+exec --no-startup-id picom
 exec --no-startup-id dex --autostart --environment i3
+
+exec_always --no-startup-id killall polybar
+exec_always --no-startup-id ./.config/polybar/launch_polybar.sh
+
+# set desktop background with custom effect
+exec_always --no-startup-id betterlockscreen -w dim
+
+# Alternative (set last used background)
+# exec --no-startup-id source ~/Downloads/unknown-pleasures.jpg
 
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+exec_always --no-startup-id xss-lock --transfer-sleep-lock -- betterlockscreen -l dim --nofork
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
@@ -115,16 +128,16 @@ bindsym $mod+a focus parent
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $ws1 "1"
-set $ws2 "2"
-set $ws3 "3"
+set $ws1 "1 Discord"
+set $ws2 "2 Terminal"
+set $ws3 "3 Firefox"
 set $ws4 "4"
 set $ws5 "5"
 set $ws6 "6"
 set $ws7 "7"
 set $ws8 "8"
 set $ws9 "9"
-set $ws10 "10"
+set $ws10 "10x"
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
@@ -156,6 +169,8 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+# lock screen using betterlockscreen
+bindsym $mod+Shift+x exec betterlockscreen -l dim
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -165,10 +180,10 @@ mode "resize" {
         # Pressing right will grow the window’s width.
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
-        bindsym j resize shrink width 10 px or 10 ppt
-        bindsym k resize grow height 10 px or 10 ppt
-        bindsym l resize shrink height 10 px or 10 ppt
-        bindsym semicolon resize grow width 10 px or 10 ppt
+        bindsym h resize shrink width 10 px or 10 ppt
+        bindsym j resize grow height 10 px or 10 ppt
+        bindsym k resize shrink height 10 px or 10 ppt
+        bindsym l resize grow width 10 px or 10 ppt
 
         # same bindings, but for the arrow keys
         bindsym Left resize shrink width 10 px or 10 ppt
@@ -184,8 +199,20 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
+bindsym $mod+- exec "brightnessctl 10%-"
+
+gaps inner 10
+gaps inner 20
+
+# class                 border  backgr. text    indicator child_border
+client.focused          #4c7899 #285577 #ffffff #2e9ef4   #285577
+# client.focused          #4b4b4d #4b4b4d #ffffff #2e9ef4   #4b4b4d
+
+default_border normal
+hide_edge_borders both
+
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
-bar {
-        status_command i3status
-}
+# bar {
+#         status_command i3status
+# }

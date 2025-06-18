@@ -78,12 +78,25 @@ return {
 		local capabilities = vim.lsp.protocol.make_client_capabilities()
 		capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
 
+		local lspconfig = require("lspconfig")
 		--  - cmd (table): Override the default command used to start the server
 		--  - filetypes (table): Override the default list of associated filetypes for the server
 		--  - capabilities (table): Override fields in capabilities. Can be used to disable certain LSP features.
 		--  - settings (table): Override the default settings passed when initializing the server.
 		--        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
 		local servers = {
+			omnisharp = {
+				cmd = {
+					vim.fn.stdpath("data") .. "/mason/packages/omnisharp/omnisharp",
+					"--languageserver",
+					"--hostPID",
+					tostring(vim.fn.getpid())
+				},
+				root_dir = lspconfig.util.root_pattern("*.sln", "*.csproj", ".git"),
+				enable_roslyn_analyzers = true,
+				organize_imports_on_format = true,
+				enable_import_completion = true,
+			},
 			lua_ls = {
 				-- cmd = {...},
 				-- filetypes = { ...},
@@ -100,6 +113,30 @@ return {
 						},
 					},
 				},
+			},
+			-- html = {
+			-- 	filetypes = { 'html', 'typescript' }
+			-- },
+			tailwindcss = {
+				settings = {
+					tailwindCSS = {
+						includeLanguages = {
+							eelixir = "html-eex",
+							eruby = "erb",
+							htmlangular = "html",
+							templ = "html",
+							typescriptreact = "tsx",
+							typescript = "ts"
+						},
+					}
+				},
+				filetypes = { 'html', 'typescript', 'typescriptreact' }
+				-- includeLanguages = {
+				--   eelixir = "html-eex",
+				--   eruby = "erb",
+				--   htmlangular = "html",
+				--   templ = "html"
+				-- },
 			},
 			-- ts_ls = {
 			-- 	filetypes = {},
@@ -128,8 +165,6 @@ return {
 		})
 		-- require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 		require("mason-lspconfig").setup({ ensure_installed = ensure_installed })
-
-		local lspconfig = require("lspconfig")
 		require("mason-lspconfig").setup_handlers({
 			function(server_name)
 				local server = servers[server_name] or {}
@@ -158,7 +193,7 @@ return {
 				-- end
 
 				if server_name == "denols" then
-					server.filetypes = { "vue", "json", "typescript", "javascript" }
+					server.filetypes = { "vue", "json", "typescript", "javascript", "typescriptreact", "javascriptreact" }
 					-- return
 				end
 

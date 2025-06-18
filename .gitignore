@@ -1,5 +1,7 @@
 /*
 
+!/polybar/
+/polybar/spotify/.venv
 !/i3/
 !/i3/**
 !/nvim/
